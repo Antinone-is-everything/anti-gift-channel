@@ -16,8 +16,8 @@ type UsageInfo struct {
 
 func main() {
 	// Replace "https://your-outline-server-url" with your actual Outline server URL
-	serverURL = ""
-	cert256 = ""
+	serverURL := "https://example.com:1222/l9hBqsfsfsvjfbBczTo4jehg"
+	cert256 := "6EBD04FFE1E67366E2D3827943F2BE468C972063B34CE8318DA90D4C114E0F17"
 
 	client, err := outlinesdk.NewClient(serverURL, cert256)
 	if err != nil {

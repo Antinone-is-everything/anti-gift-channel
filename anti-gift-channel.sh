@@ -139,6 +139,15 @@ function Get_Key() {
 
 }
 
+Get_Poetry(){
+    API_POETRY_CALL=$(curl -s https://c.ganjoor.net/beyt.php | grep -E 'ganjoor-m1|ganjoor-m2|ganjoor-poet')
+    ganjoor_m1=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-m1">\([^<]*\)<\/div>.*/\1/p')
+    ganjoor_m2=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-m2">\([^<]*\)<\/div>.*/\1/p')
+    ganjoor_poet=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-poet"><a href="[^"]*">\([^<]*\)<\/a>.*/\1/p')
+    
+}
+
+
 Response=$(Key_Gen)
 echo -e "Generated Key is : "
 echo -e "${Response}" | jq '.'
@@ -150,34 +159,29 @@ echo -e "${KEY}" | jq -r '.'
 
 AccessUrl=$(echo $KEY | jq -r '.accessUrl')
 
-MSG="📯📯📯\n\n
+Get_Poetry
+
+echo "ganjoor-m1: $ganjoor_m1"
+echo "ganjoor-m2: $ganjoor_m2"
+echo "ganjoor-poet: $ganjoor_poet"
+
+MSG="📯📯📯\n
 💫<b>کانفیگ تست رایگان</b>💫\n\n
-🌐 📣 @anti_none\n\n
-🇩🇪 Frankfurt\n\n
-📆 ${DATE}\n\n
+🌐 📣 @anti_none\n
+🇩🇪 Frankfurt\n
+📆 ${DATE}\n
 <code>${AccessUrl}#AntinoneVPN🌐${KeyId:-000}_freedome_${DATE:-2020-10-20}_${DataLimit:-10}G</code>\n\n
-🗝 اپراتور : تمامی اپراتورها\n\n
-📌نرم افزار های قابل نصب و استفاده\n\n
-✳️OUTLINE\n
-📱 <a href='https://play.google.com/store/apps/details?id=org.outline.android.client' >Android </a>\n
-📱 <a href='https://apps.apple.com/us/app/outline-app/id1356177741' >IOS </a>\n
-💻 <a href='https://itunes.apple.com/us/app/outline-app/id1356178125' >MacOS </a>\n
-💻 <a href='https://s3.amazonaws.com/outline-releases/client/windows/stable/Outline-Client.exe' >Windows </a>\n
-💻 <a href='https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage' >Linux </a>\n\n
-✳️ShadowSocks\n
-📱 <a href='https://play.google.com/store/apps/details?id=com.github.shadowsocks' >Android </a> | <a href='https://t.me/anti_none/7' >Android </a>\n
-📱 <a href='https://apps.apple.com/us/app/foxray/id6448898396' >IOS 16+ </a> | <a href='https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690' >Older IOS </a>\n
-📺 <a href='https://play.google.com/store/apps/details?id=com.github.shadowsocks.tv' >AndroidTV </a>\n
-💻 <a href='https://github.com/shadowsocks/ShadowsocksX-NG/releases/download/v1.10.2/ShadowsocksX-NG.dmg' >MacOS </a>\n
-💻 <a href='https://github.com/shadowsocks/shadowsocks-windows/releases/download/4.4.1.0/Shadowsocks-4.4.1.0.zip' >Windows </a>\n
-💻 <a href='https://cloudflare-ipfs.com/ipfs/Qma38UCuXzFFvsPJYn1zA82Nb9yUrUn2mdpmQahw5SvHDB/v2ray-plugin-linux-amd64-v1.3.1.tar.gz' >Linux </a>\n
-🌐 <a href='https://cloudflare-ipfs.com/ipfs/Qma38UCuXzFFvsPJYn1zA82Nb9yUrUn2mdpmQahw5SvHDB/' >Source </a>\n\n
-✳️FoXray\n
-📱 <a href='https://apps.apple.com/us/app/foxray/id6448898396?platform=iphone' >IOS </a>\n\n
-📌 حجم : <b> 10 </b> گیگابایت🔋 \n\n
-⚡️سرعت سوپر فست🔥\n\n
-ایرانسل<tg-emoji emoji-id='5368324170671202286'>✔️</tg-emoji><tg-emoji emoji-id='5368324170671202286'>❌</tg-emoji>\n\n
+🗝 اپراتور : تمامی اپراتورها\n
+📌 حجم : <b> 10 </b> گیگابایت🔋 \n
+⚡️سرعت سوپر فست🔥\n
+ایرانسل<tg-emoji emoji-id='5368324170671202286'>✔️</tg-emoji><tg-emoji emoji-id='5368324170671202286'>❌</tg-emoji>\n
 همراه اول <tg-emoji emoji-id='5368324170671202286'>👍</tg-emoji><tg-emoji emoji-id='5368324170671202286'>👎</tg-emoji>\n\n
+
+<b>شعر روز</b>📜\n\n
+${ganjoor_m1}\n
+${ganjoor_m2}\n
+👤✒️<b>${ganjoor_poet}</b>\n\n
+
 ♻️با اشتراک گذاری این پست از ما حمایت کنید\n\n
 📣 @anti_none\n
 🤖 @Antinone_Bot\n

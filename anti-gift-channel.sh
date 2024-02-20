@@ -144,6 +144,7 @@ Get_Poetry(){
     ganjoor_m1=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-m1">\([^<]*\)<\/div>.*/\1/p')
     ganjoor_m2=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-m2">\([^<]*\)<\/div>.*/\1/p')
     ganjoor_poet=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-poet"><a href="[^"]*">\([^<]*\)<\/a>.*/\1/p')
+    ganjoor_link_poetry=$(echo "$API_POETRY_CALL" | sed -n 's/.*ganjoor-poet"><a href="\([^"]*\)">[^<]*<\/a>.*/\1/p')
     
 }
 
@@ -180,7 +181,7 @@ MSG="📯📯📯\n
 <b>شعر روز</b>📜\n\n
 ${ganjoor_m1}\n
 ${ganjoor_m2}\n
-👤✒️<b>${ganjoor_poet}</b>\n\n
+👤✒️<a href='${ganjoor_link_poetry}'><b>${ganjoor_poet}</b></a>\n\n
 
 ♻️با اشتراک گذاری این پست از ما حمایت کنید\n\n
 📣 @anti_none\n
